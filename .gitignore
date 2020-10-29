@@ -350,6 +350,6 @@ MigrationBackup/
 .ionide/
 
 # vcxproj
-/cs301project.sln
-/cs301project.vcxproj
-/cs301project.vcxproj.filters
+/*.sln
+/*.vcxproj
+/*.vcxproj.filters
