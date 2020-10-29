@@ -1,16 +1,16 @@
+#ifndef ROOMFILL_H
 #define ROOMFILL_H
-#ifdef ROOMFILL_H
 
 struct skeleton
 {
 	int room;
-	int health = 50;
+	//int health = 50;
 };
 
 struct ooze
 {
 	int room;
-	int health = 20;
+	//int health = 20;
 };
 
 struct chest
@@ -21,7 +21,7 @@ struct chest
 struct boss
 {
 	int room;
-	int health = 100;
+	//int health = 100;
 };
 
 #endif

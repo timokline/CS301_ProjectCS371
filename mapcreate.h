@@ -1,5 +1,5 @@
+#ifndef MAPCREATE_H
 #define MAPCREATE_H
-#ifdef MAPCREATE_H
 
 #include <random>
 #include <iostream>

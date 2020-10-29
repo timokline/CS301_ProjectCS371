@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PLAYER_H
+#define PLAYER_H
+
 #include <cstdint>
 
 using inventoryType = std::uint32_t;
@@ -10,3 +12,5 @@ struct Player
 	int health;
 	inventoryType inventory[MAX_INVENTORY];
 };
+
+#endif // !PLAYER_H

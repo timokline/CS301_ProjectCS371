@@ -1,6 +1,11 @@
 #include "mapcreate.h"
+#include "combat.h"
 #include <string>
 #include <sstream>
+
+const double SKELETON_HEALTH = 25.0;
+const double OOZE_HEALTH = 15.0;
+const double BOSS_HEALTH = 50.0;
 
 map::map()
 {
@@ -126,9 +131,8 @@ void map::moveplayer()
 	int x = 0;
 	std::string input;
 	std::cout << "Which adjacent room would you like to go to? ";
-	while (0 == 0)
+	while (std::getline(std::cin, input))
 	{
-		std::getline(std::cin, input);
 		std::istringstream instream(input);
 		instream >> x;
 		if (!instream)
@@ -153,24 +157,30 @@ bool map::question()
 {
 	if (map::player.room == map::s1.room || map::player.room == map::s2.room || map::player.room == map::s3.room || map::player.room == map::s4.room)
 	{
-		std::cout << "\nSkeleton\n";
+		std::cout << "\nA Skeleton appears!\n";
+		combat(SKELETON_HEALTH);
+		std::cout << "\nThe skeleton's bones fall to the ground.\n";
 	}
 	else if (map::player.room == map::o1.room || map::player.room == map::o2.room || map::player.room == map::o3.room || map::player.room == map::o4.room)
 	{
-		std::cout << "\nOoze\n";
+		std::cout << "\nAn Ooze appears!\n";
+		combat(OOZE_HEALTH);
+		std::cout << "\nThe Ooze melts away.\n";
 	}
 	else if (map::player.room == map::bigboss.room)
 	{
-		std::cout << "\nBoss\n";
+		std::cout << "\nA big enemy blocks your exit!\n";
+		combat(BOSS_HEALTH);
+		std::cout << "\nThe figure retreats, but is this the end?\n";
 		return true;
 	}
 	else if (map::player.room == map::c1.room)
 	{
-		std::cout << "\nTreasure\n";
+		std::cout << "\nYou found a chest!\n" << "Seems empty..." << std::endl;
 	}
 	else
 	{
-		std::cout << "\nNada\n";
+		std::cout << "\nNothing here...\n";
 	}
 	return false;
 }
