@@ -1,4 +1,6 @@
 #include "mapcreate.h"
+#include <string>
+#include <sstream>
 
 map::map()
 {
@@ -120,27 +122,28 @@ void map::printplayer()
 void map::moveplayer()/////////////////////////////////////////////////////////PROBLEM
 {
 	int x = 0;
+	std::string input;
 	std::cout << "Which adjacent room would you like to go to? ";
 	while (0 == 0)
 	{
-		std::cin >> x;
-		if (x == layout.roomarray[player][0])
+		std::getline(std::cin, input);
+		std::istringstream instream(input);
+		instream >> x;
+		if (!instream)
+		{
+			std::cout << "Please enter a number." << std::endl;
+			continue;
+		}
+
+		if (x == layout.roomarray[player][0] || x == layout.roomarray[player][1] || x == layout.roomarray[player][2])
 		{
 			player = x;
 			break;
 		}
-		if (x == layout.roomarray[player][1])
+		else
 		{
-			player = x;
-			break;
+			std::cout << "Not a viable answer. Please answer one of the rooms listed above." << std::endl;
 		}
-		if (x == layout.roomarray[player][2])
-		{
-			player = x;
-			break;
-		}
-		std::cin.ignore;
-		std::cout << "Not a viable answer. Please answer on of the rooms listed above." << std::endl;
 	}
 }
 
