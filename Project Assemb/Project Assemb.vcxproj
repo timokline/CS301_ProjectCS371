@@ -131,6 +131,9 @@
     <ClInclude Include="mapcreate.h" />
     <ClInclude Include="roomfill.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="bitmaskcmp.asm" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
