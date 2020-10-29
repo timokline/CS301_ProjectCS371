@@ -6,6 +6,9 @@
 #include <string>
 
 #include "roomfill.h"
+#include "Player.h"
+
+enum class GameStates { PLAYING, EXIT };
 
 struct room
 {
@@ -18,11 +21,11 @@ public:
 	map();
 	void printplayer();
 	void moveplayer();
-	void question();
+	bool question();
 private:
 	void fillrooms();
 	room layout;
-	int player;
+	Player player;
 	skeleton s1;
 	skeleton s2;
 	skeleton s3;
@@ -31,6 +34,8 @@ private:
 	ooze o2;
 	ooze o3;
 	ooze o4;
+	chest c1;
+	chest c2;
 	boss bigboss;
 };
 

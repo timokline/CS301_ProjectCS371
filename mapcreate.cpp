@@ -69,7 +69,7 @@ void map::fillrooms()
 	}
 
 	std::vector<int> filler;
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		x = dis(gen);
 		y = 0;
@@ -106,17 +106,19 @@ void map::fillrooms()
 	map::o2.room = filler[5];
 	map::o3.room = filler[6];
 	map::o4.room = filler[7];
+	map::c1.room = filler[8];
+	map::c2.room = filler[9];
 	map::bigboss.room = 19;
-	map::player = 0;
+	map::player.room = 0;
 }
 
 void map::printplayer()
 {
-	std::cout << "You are in room: " << player << std::endl;
+	std::cout << "You are in room: " << player.room << std::endl;
 	std::cout << "Adjacent rooms are: ";
-	std::cout<< layout.roomarray[player][0] << " ";
-	std::cout << layout.roomarray[player][1] << " ";
-	std::cout << layout.roomarray[player][2] << std::endl;
+	std::cout<< layout.roomarray[player.room][0] << " ";
+	std::cout << layout.roomarray[player.room][1] << " ";
+	std::cout << layout.roomarray[player.room][2] << std::endl;
 }
 
 void map::moveplayer()
@@ -135,9 +137,9 @@ void map::moveplayer()
 			continue;
 		}
 
-		if (x == layout.roomarray[player][0] || x == layout.roomarray[player][1] || x == layout.roomarray[player][2])
+		if (x == layout.roomarray[player.room][0] || x == layout.roomarray[player.room][1] || x == layout.roomarray[player.room][2])
 		{
-			player = x;
+			player.room = x;
 			break;
 		}
 		else
@@ -147,24 +149,30 @@ void map::moveplayer()
 	}
 }
 
-void map::question()
+bool map::question()
 {
-	if (map::player == map::s1.room || map::player == map::s2.room || map::player == map::s3.room || map::player == map::s4.room)
+	if (map::player.room == map::s1.room || map::player.room == map::s2.room || map::player.room == map::s3.room || map::player.room == map::s4.room)
 	{
 		std::cout << "\nSkeleton\n";
 	}
-	else if (map::player == map::o1.room || map::player == map::o2.room || map::player == map::o3.room || map::player == map::o4.room)
+	else if (map::player.room == map::o1.room || map::player.room == map::o2.room || map::player.room == map::o3.room || map::player.room == map::o4.room)
 	{
 		std::cout << "\nOoze\n";
 	}
-	else if (map::player == map::bigboss.room)
+	else if (map::player.room == map::bigboss.room)
 	{
 		std::cout << "\nBoss\n";
+		return true;
+	}
+	else if (map::player.room == map::c1.room)
+	{
+		std::cout << "\nTreasure\n";
 	}
 	else
 	{
 		std::cout << "\nNada\n";
 	}
+	return false;
 }
 
 
