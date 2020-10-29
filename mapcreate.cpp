@@ -119,7 +119,7 @@ void map::printplayer()
 	std::cout << layout.roomarray[player][2] << std::endl;
 }
 
-void map::moveplayer()/////////////////////////////////////////////////////////PROBLEM
+void map::moveplayer()
 {
 	int x = 0;
 	std::string input;
