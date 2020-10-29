@@ -18,20 +18,10 @@ public:
 	void printplayer();
 	void moveplayer();
 	bool dead();
-	void detect();
-	void wumpmove();
-	bool shoot();
 private:
 	void fillrooms();
-	int batmove();
 	room layout;
 	int player;
-	int wumpus;
-	int bats1;
-	int bats2;
-	int pit1;
-	int pit2;
-	int arrowcount = 5;
 };
 
 #endif
