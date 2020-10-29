@@ -66,6 +66,45 @@ void map::fillrooms()
 		}
 	}
 
+	std::vector<int> filler;
+	for (int i = 0; i < 8; i++)
+	{
+		x = dis(gen);
+		y = 0;
+		for (auto j : filler)
+		{
+			if (x == 0)
+			{
+				y++;
+			}
+			if (x == 19)
+			{
+				y++;
+			}
+			if (x == j)
+			{
+				y++;
+			}
+		}
+		if (y > 0)
+		{
+			i--;
+		}
+		else
+		{
+			filler.push_back(x);
+		}
+	}
+
+	map::s1.room = filler[0];
+	map::s2.room = filler[1];
+	map::s3.room = filler[2];
+	map::s4.room = filler[3];
+	map::o1.room = filler[4];
+	map::o2.room = filler[5];
+	map::o3.room = filler[6];
+	map::o4.room = filler[7];
+	map::bigboss.room = 19;
 	map::player = 0;
 }
 
@@ -104,9 +143,24 @@ void map::moveplayer()
 	}
 }
 
-bool map::dead()
+void map::question()
 {
-	return 0;
+	if (map::player == map::s1.room || map::player == map::s2.room || map::player == map::s3.room || map::player == map::s4.room)
+	{
+		std::cout << "\nSkeleton\n";
+	}
+	else if (map::player == map::o1.room || map::player == map::o2.room || map::player == map::o3.room || map::player == map::o4.room)
+	{
+		std::cout << "\nOoze\n";
+	}
+	else if (map::player == map::bigboss.room)
+	{
+		std::cout << "\nBoss\n";
+	}
+	else
+	{
+		std::cout << "\nNada\n";
+	}
 }
 
 

@@ -26,5 +26,8 @@
     <ClInclude Include="mapcreate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="roomfill.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
