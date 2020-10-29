@@ -117,7 +117,7 @@ void map::printplayer()
 	std::cout << layout.roomarray[player][2] << std::endl;
 }
 
-void map::moveplayer()
+void map::moveplayer()/////////////////////////////////////////////////////////PROBLEM
 {
 	int x = 0;
 	std::cout << "Which adjacent room would you like to go to? ";
@@ -139,6 +139,7 @@ void map::moveplayer()
 			player = x;
 			break;
 		}
+		std::cin.ignore;
 		std::cout << "Not a viable answer. Please answer on of the rooms listed above." << std::endl;
 	}
 }
