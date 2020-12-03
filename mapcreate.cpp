@@ -158,32 +158,70 @@ bool map::question()
 	std::uniform_int_distribution<> OOZE_HEALTH(17, 22);
 	std::uniform_int_distribution<> BOSS_HEALTH(50, 60);
 	std::uniform_int_distribution<> MIMIC_HEALTH(17, 25);
+	std::uniform_int_distribution<> Type(-1,1);
+	int x = Type(gen);
 
 	if (map::player.room == map::s1.room || map::player.room == map::s2.room || map::player.room == map::s3.room || map::player.room == map::s4.room)
 	{
-		std::cout << "\nA Fire Skeleton appears!\n";
-		combat(SKELETON_HEALTH(gen),1);
-		std::cout << "\nThe Fire Skeleton's bones fall to the ground.\n";
+		if (x == 1)
+		{
+			std::cout << "\nA Fire";
+		}
+		if (x == 0)
+		{
+			std::cout << "\nA Water";
+		}
+		if (x == -1)
+		{
+			std::cout << "\nA Wooden";
+		}
+		std::cout << " Skeleton appears!\n";
+		combat(SKELETON_HEALTH(gen),x);
+		std::cout << "\nThe Skeleton's bones fall to the ground.\n";
 	}
 	else if (map::player.room == map::o1.room || map::player.room == map::o2.room || map::player.room == map::o3.room || map::player.room == map::o4.room)
 	{
-		std::cout << "\nA Watery Ooze appears!\n";
-		combat(OOZE_HEALTH(gen),0);
-		std::cout << "\nThe Watery Ooze melts away.\n";
+		if (x == 1)
+		{
+			std::cout << "\nA Fire";
+		}
+		if (x == 0)
+		{
+			std::cout << "\nA Water";
+		}
+		if (x == -1)
+		{
+			std::cout << "\nA Wooden";
+		}
+		std::cout << " Ooze appears!\n";
+		combat(OOZE_HEALTH(gen),x);
+		std::cout << "\nThe Ooze melts away.\n";
 	}
 	else if (map::player.room == map::bigboss.room)
 	{
 		//FIX
 		std::cout << "\nA big enemy blocks your exit!\n";
-		combat(BOSS_HEALTH(gen),0);
+		combat(BOSS_HEALTH(gen),x);
 		std::cout << "\nThe figure retreats, but is this the end?\n";
 		return true;
 	}
 	else if (map::player.room == map::m1.room || map::m2.room)
 	{
-		std::cout << "\nYou found a chest!\n" << "Seems empty...\n" << "JUST KIDDING IT WAS A WOODEN MIMIC\n";
-		combat(MIMIC_HEALTH(gen), -1);
-		std::cout << "\nThe Wooden Mimic splinters apart.\n";
+		std::cout << "\nYou found a chest!\n" << "Seems empty...\n" << "JUST KIDDING IT WAS A ";
+		if (x == 1)
+		{
+			std::cout << "FIREY MIMIC\n";
+		}
+		if (x == 0)
+		{
+			std::cout << "WATERY MIMIC\n";
+		}
+		if (x == -1)
+		{
+			std::cout << "WOODEN MIMIC\n";
+		}
+		combat(MIMIC_HEALTH(gen), x);
+		std::cout << "\nThe Mimic splinters apart.\n";
 	}
 	else
 	{

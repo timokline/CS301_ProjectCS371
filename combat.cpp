@@ -13,7 +13,7 @@ void combat(double health, int attributeM) {
 	unsigned int crit2 = 0;
 	auto buff = dis(gen);
 	auto totalDamage = 0;
-	std::string type;
+	int type;
 	std::string input;
 	int attributeW;
 
@@ -31,21 +31,26 @@ void combat(double health, int attributeM) {
 			instream >> type;
 			if (!instream)
 			{
-				std::cout << "Would you like to attack with FireSword, WaterAxe, or WoodenSpear." << std::endl;
+				std::cout << "Would you like to attack with:\n";
+				std::cout << " ---------------------------------------------------------- " << std::endl;
+				std::cout << "(                   )                (                     )" << std::endl;
+				std::cout << " ) A Fire Sword(1) (  A Water Axe(2)  ) A Wooden Spear(3) ( " << std::endl;
+				std::cout << "(                   )                (                     )" << std::endl;
+				std::cout << " ---------------------------------------------------------- " << std::endl;
 				continue;
 			}
 			
-			if (type == "FireSword")
+			if (type == 1)
 			{
 				attributeW = 1;
 				break;
 			}
-			else if (type == "WaterAxe")
+			else if (type == 2)
 			{
 				attributeW = 0;
 				break;
 			}
-			else if (type == "WoodenSpear")
+			else if (type == 3)
 			{
 				attributeW = -1;
 				break;
