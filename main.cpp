@@ -4,7 +4,6 @@ int main()
 {
 	bool running = true;
 	map wump;
-
 	while (running)
 	{
 		GameStates state = GameStates::PLAYING;
