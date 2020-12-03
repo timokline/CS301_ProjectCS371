@@ -3,9 +3,6 @@
 #include <string>
 #include <sstream>
 
-const double SKELETON_HEALTH = 25.0;
-const double OOZE_HEALTH = 15.0;
-const double BOSS_HEALTH = 50.0;
 
 map::map()
 {
@@ -155,22 +152,29 @@ void map::moveplayer()
 
 bool map::question()
 {
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> SKELETON_HEALTH(20, 26);
+	std::uniform_int_distribution<> OOZE_HEALTH(17, 22);
+	std::uniform_int_distribution<> BOSS_HEALTH(50, 60);
+
+
 	if (map::player.room == map::s1.room || map::player.room == map::s2.room || map::player.room == map::s3.room || map::player.room == map::s4.room)
 	{
 		std::cout << "\nA Skeleton appears!\n";
-		combat(SKELETON_HEALTH);
+		combat(SKELETON_HEALTH(gen));
 		std::cout << "\nThe skeleton's bones fall to the ground.\n";
 	}
 	else if (map::player.room == map::o1.room || map::player.room == map::o2.room || map::player.room == map::o3.room || map::player.room == map::o4.room)
 	{
 		std::cout << "\nAn Ooze appears!\n";
-		combat(OOZE_HEALTH);
+		combat(OOZE_HEALTH(gen));
 		std::cout << "\nThe Ooze melts away.\n";
 	}
 	else if (map::player.room == map::bigboss.room)
 	{
 		std::cout << "\nA big enemy blocks your exit!\n";
-		combat(BOSS_HEALTH);
+		combat(BOSS_HEALTH(gen));
 		std::cout << "\nThe figure retreats, but is this the end?\n";
 		return true;
 	}
