@@ -5,8 +5,11 @@
 #include <bitset>
 #include <cstdint>
 #include <random>
+#include <string>
+#include <sstream>
+#include <cmath>
 
-void combat(double health);
+void combat(double health, int attributeM);
 
 #endif // !COMBAT_H
 

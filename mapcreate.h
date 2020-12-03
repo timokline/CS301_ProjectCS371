@@ -34,8 +34,8 @@ private:
 	ooze o2;
 	ooze o3;
 	ooze o4;
-	chest c1;
-	chest c2;
+	mimic m1;
+	mimic m2;
 	boss bigboss;
 };
 

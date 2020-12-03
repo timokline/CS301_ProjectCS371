@@ -108,8 +108,8 @@ void map::fillrooms()
 	map::o2.room = filler[5];
 	map::o3.room = filler[6];
 	map::o4.room = filler[7];
-	map::c1.room = filler[8];
-	map::c2.room = filler[9];
+	map::m1.room = filler[8];
+	map::m2.room = filler[9];
 	map::bigboss.room = 19;
 	map::player.room = 0;
 }
@@ -157,30 +157,33 @@ bool map::question()
 	std::uniform_int_distribution<> SKELETON_HEALTH(20, 26);
 	std::uniform_int_distribution<> OOZE_HEALTH(17, 22);
 	std::uniform_int_distribution<> BOSS_HEALTH(50, 60);
-
+	std::uniform_int_distribution<> MIMIC_HEALTH(17, 25);
 
 	if (map::player.room == map::s1.room || map::player.room == map::s2.room || map::player.room == map::s3.room || map::player.room == map::s4.room)
 	{
-		std::cout << "\nA Skeleton appears!\n";
-		combat(SKELETON_HEALTH(gen));
-		std::cout << "\nThe skeleton's bones fall to the ground.\n";
+		std::cout << "\nA Fire Skeleton appears!\n";
+		combat(SKELETON_HEALTH(gen),1);
+		std::cout << "\nThe Fire Skeleton's bones fall to the ground.\n";
 	}
 	else if (map::player.room == map::o1.room || map::player.room == map::o2.room || map::player.room == map::o3.room || map::player.room == map::o4.room)
 	{
-		std::cout << "\nAn Ooze appears!\n";
-		combat(OOZE_HEALTH(gen));
-		std::cout << "\nThe Ooze melts away.\n";
+		std::cout << "\nA Watery Ooze appears!\n";
+		combat(OOZE_HEALTH(gen),0);
+		std::cout << "\nThe Watery Ooze melts away.\n";
 	}
 	else if (map::player.room == map::bigboss.room)
 	{
+		//FIX
 		std::cout << "\nA big enemy blocks your exit!\n";
-		combat(BOSS_HEALTH(gen));
+		combat(BOSS_HEALTH(gen),0);
 		std::cout << "\nThe figure retreats, but is this the end?\n";
 		return true;
 	}
-	else if (map::player.room == map::c1.room)
+	else if (map::player.room == map::m1.room || map::m2.room)
 	{
-		std::cout << "\nYou found a chest!\n" << "Seems empty..." << std::endl;
+		std::cout << "\nYou found a chest!\n" << "Seems empty...\n" << "JUST KIDDING IT WAS A WOODEN MIMIC\n";
+		combat(MIMIC_HEALTH(gen), -1);
+		std::cout << "\nThe Wooden Mimic splinters apart.\n";
 	}
 	else
 	{

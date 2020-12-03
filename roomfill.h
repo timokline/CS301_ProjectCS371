@@ -13,7 +13,7 @@ struct ooze
 	//int health = 20;
 };
 
-struct chest
+struct mimic
 {
 	int room;
 };
