@@ -10,7 +10,7 @@ extern "C" int attack(Stats, Stats); // written in assembly!
 void combat(double health) {
 	std::random_device rd;
 	std::mt19937 gen(rd());
-	std::uniform_int_distribution<> dis(0, MAX_COMPONENTS-1);
+	std::uniform_int_distribution<> dis(0, MAX_COMPONENTS - 1);
 
 	Stats weaponStats;
 	Stats monsterStats;
