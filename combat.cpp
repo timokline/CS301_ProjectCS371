@@ -1,11 +1,6 @@
 #include "combat.h"
 
-using ComponentType = std::uint8_t;
-const ComponentType MAX_COMPONENTS = 8;
-using Stats = std::bitset<MAX_COMPONENTS>;
-const int MAX_SELECTIONS = 5;
-
-extern "C" int attack(Stats, Stats); // written in assembly!
+extern "C" int attack(unsigned int, unsigned int); // written in assembly!
 
 void combat(double health) {
 	std::random_device rd;
@@ -13,37 +8,53 @@ void combat(double health) {
 	std::uniform_int_distribution<> dis(0, 8);
 	std::uniform_int_distribution<> dmg(3, 6);
 
-	Stats weaponStats;
-	Stats monsterStats;
+	unsigned int crit1 = 0;
+	unsigned int crit2 = 0;
+	auto buff = dis(gen);
+	
 
-	auto affinity = dis(gen);
-	auto attribute = dis(gen);
-	for (int selection = 0; selection < 5; selection++)
-	{
-		monsterStats[attribute] = 1.0;
-		weaponStats[affinity] = 1.0;
-	}
-
-	/*prints the bits that have been set to true.*/
-	//std::cout << monsterStats << std::endl;
-	//std::cout << weaponStats << std::endl;
 	std::cout << "The enemy has " << health << " health." << std::endl;
 	while (health > 0.0)
 	{
+		auto totalDamage = 0;
 		std::cout << "Hit Enter to attack" << std::endl;
 		std::cin.ignore();
-		auto multiplier = attack(monsterStats, weaponStats);//Stats(attack(monsterStats, weaponStats)).count();
-		if (multiplier > 1.0)
+
+		//Crit Calculator 
+		buff = dis(gen);
+		for (int counter = 0; counter < 6; counter++)
+		{
+			crit1 |= (1 << buff);
+		}
+		buff = dis(gen);
+		for (int counter = 0; counter < 6; counter++)
+		{
+			crit2 |= (1 << buff);
+		}
+
+		//std::cout << "crit1:" << crit1 << std::endl;
+		//std::cout << "crit2:" << crit2 << std::endl;
+
+		auto critVal = attack(crit1, crit2);//Stats(attack(monsterStats, weaponStats)).count();
+		
+		if (critVal > 1.0)
 		{
 			std::cout << "CRIT!\n";
-			multiplier *= (float)dmg(gen);
+			totalDamage = 2* dmg(gen);
 		}
 		else
-			multiplier = (float) dmg(gen);
+			totalDamage =  dmg(gen);
 
-		health -= multiplier;
-		std::cout << "You deal " << multiplier << " damage." << std::endl;
+
+
+
+		health -= totalDamage;
+		std::cout << "You deal " << totalDamage << " damage." << std::endl;
 		std::cout << "The enemy has " << health << " health left." << std::endl;
+
+		crit1 = 0;
+		crit2 = 0;
 	}
 
 }
+
