@@ -1,12 +1,10 @@
 #ifndef MAPCREATE_H
 #define MAPCREATE_H
 
-#include <random>
-#include <iostream>
-#include <string>
+#include<vector>
 
-#include "roomfill.h"
-#include "Player.h"
+#include "main.h"
+#include "characters.h"
 
 enum class GameStates { PLAYING, EXIT };
 
@@ -18,25 +16,25 @@ struct room
 class map
 {
 public:
-	map();
+	map(Player& player);
+	~map();
 	void printplayer();
 	void moveplayer();
-	bool question();
+	int question(Player& player);
+	int openchest(int x, Player& player);
+	void remove(int x);
+	bool bossdead();
 private:
 	void fillrooms();
 	room layout;
 	Player player;
-	skeleton s1;
-	skeleton s2;
-	skeleton s3;
-	skeleton s4;
-	ooze o1;
-	ooze o2;
-	ooze o3;
-	ooze o4;
-	mimic m1;
-	mimic m2;
-	boss bigboss;
+	object s;
+	object o;
+	object m;
+	object c;
+	object bigboss;
+public:
+	std::vector<int> filler;
 };
 
 

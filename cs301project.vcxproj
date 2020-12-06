@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="packages\nasm.2.10.07\build\native\nasm.props" Condition="Exists('packages\nasm.2.10.07\build\native\nasm.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -22,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{04576eda-d483-4ee8-aa12-40dbf6df6bfe}</ProjectGuid>
-    <RootNamespace>Project1</RootNamespace>
+    <ProjectGuid>{7a16ff5a-dfc8-4ba1-9a29-2d875865f730}</ProjectGuid>
+    <RootNamespace>cs301project</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -80,6 +79,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <ExecutablePath>$(VC_ExecutablePath_x64);$(CommonExecutablePath);</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -122,6 +122,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <LargeAddressAware>false</LargeAddressAware>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -141,36 +142,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="..\bitmaskcmp.asm">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    <ClCompile Include="combat.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="mapcreate.cpp" />
+    <ClCompile Include="mapedit.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="combat.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="mapcreate.h" />
+    <ClInclude Include="characters.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="bitmaskcmp.asm">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"C:\Program Files\NASM\nasm" -f win64 bitmaskcmp.asm</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"C:\Program Files\NASM\nasm.exe" -f win64 bitmaskcmp.asm</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">bitmaskcmp.obj</Outputs>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\combat.cpp" />
-    <ClCompile Include="..\main.cpp" />
-    <ClCompile Include="..\mapcreate.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\combat.h" />
-    <ClInclude Include="..\mapcreate.h" />
-    <ClInclude Include="..\Player.h" />
-    <ClInclude Include="..\roomfill.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
-    <Import Project="packages\nasm.2.10.07\build\native\nasm.targets" Condition="Exists('packages\nasm.2.10.07\build\native\nasm.targets')" />
   </ImportGroup>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('packages\nasm.2.10.07\build\native\nasm.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\nasm.2.10.07\build\native\nasm.props'))" />
-    <Error Condition="!Exists('packages\nasm.2.10.07\build\native\nasm.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\nasm.2.10.07\build\native\nasm.targets'))" />
-  </Target>
 </Project>

@@ -15,32 +15,35 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\combat.cpp">
+    <ClCompile Include="combat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\main.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\mapcreate.cpp">
+    <ClCompile Include="mapcreate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mapedit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\combat.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="mapcreate.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\mapcreate.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="combat.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Player.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\roomfill.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="characters.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\bitmaskcmp.asm">
+    <CustomBuild Include="bitmaskcmp.asm">
       <Filter>Source Files</Filter>
     </CustomBuild>
   </ItemGroup>
