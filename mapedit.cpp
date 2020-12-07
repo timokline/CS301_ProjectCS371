@@ -44,7 +44,7 @@ int map::question(Player& player)
 	std::uniform_int_distribution<> OOZE_HEALTH(17, 22);
 	std::uniform_int_distribution<> BOSS_HEALTH(50, 60);
 	std::uniform_int_distribution<> MIMIC_HEALTH(5, 6);
-	std::uniform_int_distribution<> ELEMENT(0, 2);
+	std::uniform_int_distribution<> ELEMENT(0, 3);
 	
 	//Unique floor enemies
 	std::string mod1, mod2;
@@ -55,8 +55,8 @@ int map::question(Player& player)
 		mod2 = "";
 		break;
 	case 1:
-		mod1 = "Frog";
-		mod2 = "Snail";
+		mod1 = "Frog ";
+		mod2 = "Snail ";
 		break;
 	default:
 		break;
@@ -69,24 +69,24 @@ int map::question(Player& player)
 		std::cout << "\nA ";
 		switch (map::s.type)
 		{
-		case 1<<0:
+		case 1<<0: //0b0001
 			std::cout << "Fire ";
 			break;
-		case 1<<1:
+		case 1<<1: //0b0010
 			std::cout << "Water ";
 			break;
-		case 1<<2:
+		case 1<<2: //0b0100
 			std::cout << "Mossy ";
 			break;
-		default:
+		default:   //0b1000
 			break;
 		}
-		std::cout << "Skeleton "<< mod1 << " appears!\n";
+		std::cout << "Skeleton "<< mod1 << "appears!\n";
 		player.playerhp = playercombat(SKELETON_HEALTH(gen) + (5 * player.difficulty), map::s, player);
 		if (player.playerhp == 0)
 			return 0;
 		std::cout << "\nThe Skeleton " << mod1 << "'s bones fall to the ground.\n";
-		map::s.type = 0;
+		map::s.type = 0<<0;
 		remove(map::player.room);
 	}
 
@@ -97,25 +97,25 @@ int map::question(Player& player)
 		std::cout << "\nA";
 		switch (map::o.type)
 		{
-		case 1<<0:
+		case 1<<0:	//0b0001
 			std::cout << " Fire ";
 			break;
-		case 1<<1:
+		case 1<<1:	//0b0010
 			std::cout << " Water ";
 			break;
-		case 1<<2:
+		case 1<<2:	//0b0100
 			std::cout << " Mossy ";
 			break;
-		default:
+		default:	//0b1000
 			std::cout << "n ";
 			break;
 		}
-		std::cout << "Ooze " << mod2 << " appears!\n";
+		std::cout << "Ooze " << mod2 << "appears!\n";
 		player.playerhp = playercombat(OOZE_HEALTH(gen) + (5 * player.difficulty), map::o, player);
 		if (player.playerhp == 0)
 			return 0;
 		std::cout << "\nThe Ooze " << mod2 << " drips away.\n";
-		map::o.type = 0;
+		map::o.type = 0<<0;
 		remove(map::player.room);
 	}
 

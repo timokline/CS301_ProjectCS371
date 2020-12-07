@@ -116,7 +116,7 @@ void map::fillrooms()
 	map::s.room2 = filler[1];
 	map::s.room3 = filler[2];
 	map::s.room4 = filler[3];
-	map::s.type = 0<<0;
+	map::s.type = 0<<0; //0b0000
 	map::s.high = 7;
 	map::s.low = 3;
 
@@ -124,13 +124,13 @@ void map::fillrooms()
 	map::o.room2 = filler[5];
 	map::o.room3 = filler[6];
 	map::o.room4 = filler[7];
-	map::o.type = 0<<0; 
+	map::o.type = 0<<0; //0b0000
 	map::o.high = 6;
 	map::o.low = 5;
 
 	map::m.room1 = filler[8];
 	map::m.room2 = filler[9];
-	map::m.type = 1<<2; 
+	map::m.type = 1<<2; //0b0100 (grass)
 	map::m.high = 13;
 	map::m.low = 10;
 

@@ -78,10 +78,10 @@ int main()
 	playertemp.playerhp = MAX_HP;
 	playertemp.potions = 5;
 	playertemp.difficulty = 0;
-	playertemp.fire = 0;
-	playertemp.grass = 0;
-	playertemp.water = 0;
-	playertemp.key = 0;
+	playertemp.fire = 1;
+	playertemp.grass = 1;
+	playertemp.water = 1;
+	playertemp.key = 1;
 	playertemp.blockcd = 0;
 	//std::cout << "zp";
 

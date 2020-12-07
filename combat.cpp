@@ -390,7 +390,7 @@ int typeAdv(Player& player, int totalDamage, object& enemy)
 {
 	int type;
 	std::string input;
-	unsigned int attributeW = 1<<3; //0x1000
+	unsigned int attributeW = 1<<3; //0b1000
 
 	//Choosing Weapon
 	std::cout << "Hit ENTER to choose weapon.\n";
@@ -443,19 +443,19 @@ int typeAdv(Player& player, int totalDamage, object& enemy)
 		}
 		else if (type == 3 && player.fire)
 		{
-			attributeW |= (1 << 2);
+			attributeW |= (1 << 2);//0b0100
 			totalDamage = totalDamage + player.fire * 5; 
 			break;
 		}
 		else if (type == 4 && player.water)
 		{
-			attributeW |= (1 << 0);
+			attributeW |= (1 << 0);//0b0001
 			totalDamage = totalDamage + player.water * 5;
 			break;
 		}
 		else if (type == 5 && player.grass)
 		{
-			attributeW |= (1 << 1);
+			attributeW |= (1 << 1);//0b0010
 			totalDamage = totalDamage + player.grass * 5;
 			break;
 		}
@@ -467,7 +467,6 @@ int typeAdv(Player& player, int totalDamage, object& enemy)
 		
 	}
 	std::cout << "\n";
-
 	auto effectiveness = typeCalc(attributeW, enemy.type); // Calls assembly function to calculate type advantage
 	if (effectiveness > 0)
 		std::cout << "SUPER EFFECTIVE!\n";
