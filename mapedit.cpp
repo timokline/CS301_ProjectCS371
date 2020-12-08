@@ -44,7 +44,7 @@ int map::question(Player& player)
 	std::uniform_int_distribution<> OOZE_HEALTH(17, 22);
 	std::uniform_int_distribution<> BOSS_HEALTH(50, 60);
 	std::uniform_int_distribution<> MIMIC_HEALTH(5, 6);
-	std::uniform_int_distribution<> ELEMENT(0, 3);
+	std::uniform_int_distribution<> ELEMENT(0, 2);
 	
 	//Unique floor enemies
 	std::string mod1, mod2;
